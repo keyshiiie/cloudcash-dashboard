@@ -1,75 +1,62 @@
-# React + TypeScript + Vite
+# 📊 Cloudcash Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Интерактивный дашборд для управления финансами, разработанный на React и TypeScript. Проект создан по макету из Figma (Financial Dashboard Community) и демонстрирует навыки построения сложных интерфейсов, компонентной архитектуры и работы с состояниями.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 О проекте
 
-## React Compiler
+**Cloudcash** — это личный кабинет пользователя (дашборд), который позволяет отслеживать баланс, расходы, историю транзакций и ставить финансовые цели. 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+В ходе разработки основное внимание уделялось:
+*   **Компонентному подходу** (каждый блок интерфейса вынесен в отдельный изолированный компонент).
+*   **Типизации данных** (все сущности описаны через интерфейсы TypeScript).
+*   **Имитации реального API** (создан мок-сервис с задержкой сети для демонстрации Skeleton Loaders).
+*   **Отзывчивости интерфейса** (адаптивная сетка, интерактивные элементы).
 
-## Expanding the ESLint configuration
+## ✨ Ключевые особенности
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+*   **Имитация API:** Асинхронная загрузка данных с отображением скелетон-лоадеров (Skeleton Loaders) во время ожидания.
+*   **Интерактивный виджет карт:** Слайдер с переключением между виртуальными картами и пересчетом баланса/лимита.
+*   **Кастомные элементы управления:** Свитч деактивации карты, горизонтальный скролл целей с умными стрелками навигации.
+*   **Динамические списки:** Вывод истории транзакций и целей с автоматическим подбором иконок по категориям.
+*   **Анимации:** Плавное появление карточек при загрузке (Fade-in Up) через кастомные CSS keyframes.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠 Стек технологий
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+*   **Frontend:** React 18, TypeScript
+*   **Стилизация:** Tailwind CSS (Utility-first подход, кастомные классы в `@layer`)
+*   **Иконки:** [Lucide React](https://lucide.dev/)
+*   **Сборка:** Vite
+*   **Типизация:** Строгие интерфейсы (`DashboardData`, `BankCard`, `Transaction` и др.)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Архитектура проекта
 
-```
+Проект имеет модульную структуру, где каждый компонент отвечает за свой участок работы:
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+```text
+src/
+├── api/
+│   └── dashboard.ts       # Мок-сервис (имитация fetch-запроса)
+├── assets/
+│   └── logo.svg           # Логотип
+├── components/
+│   ├── layout/
+│   │   ├── Sidebar.tsx    # Боковое меню с логотипом и баннером
+│   │   └── Header.tsx     # Верхняя панель с профилем пользователя
+│   └── dashboard/
+│       ├── CardsWidget.tsx      # Блок с банковскими картами (со слайдером)
+│       ├── TransactionsTable.tsx# Таблица истории транзакций
+│       ├── GoalsWidget.tsx      # Карточки целей (со скроллом)
+│       ├── OutcomeStats.tsx     # Прогресс-бары расходов
+│       └── NewTransaction.tsx   # Форма перевода и баннер займа
+├── data/
+│   └── db.ts              # Моковые данные (JSON)
+├── types/
+│   └── index.ts           # TypeScript интерфейсы
+├── App.tsx                # Корневой компонент, сетка дашборда
+├── index.css              # Tailwind директивы + кастомные утилиты
+└── main.tsx               # Точка входа
