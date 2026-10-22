@@ -2,11 +2,6 @@
 
 Интерактивный дашборд для управления финансами, разработанный на React и TypeScript. Проект создан по макету из Figma (Financial Dashboard Community) и демонстрирует навыки построения сложных интерфейсов, компонентной архитектуры и работы с состояниями.
 
-![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-5.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-
 ## 🚀 О проекте
 
 **Cloudcash** — это личный кабинет пользователя (дашборд), который позволяет отслеживать баланс, расходы, историю транзакций и ставить финансовые цели. 
